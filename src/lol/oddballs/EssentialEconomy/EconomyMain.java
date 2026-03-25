@@ -77,9 +77,17 @@ public class EconomyMain extends JavaPlugin {
 		this.getCommand("money").setExecutor(moneyCommandHandler);
 		this.getCommand("money").setTabCompleter(moneyCommandHandler);
 		
-		this.getCommand("balance").setExecutor(new BalanceCommand(this));
-		this.getCommand("pay").setExecutor(new PayCommand(this));
-		this.getCommand("balancetop").setExecutor(new BalanceTopCommand(this));
+		BalanceCommand balanceCommand = new BalanceCommand(this);
+		this.getCommand("balance").setExecutor(balanceCommand);
+		this.getCommand("balance").setTabCompleter(balanceCommand);
+
+		PayCommand payCommand = new PayCommand(this);
+		this.getCommand("pay").setExecutor(payCommand);
+		this.getCommand("pay").setTabCompleter(payCommand);
+
+		BalanceTopCommand balanceTopCommand = new BalanceTopCommand(this);
+		this.getCommand("balancetop").setExecutor(balanceTopCommand);
+		this.getCommand("balancetop").setTabCompleter(balanceTopCommand);
 		
 		this.getServer().getPluginManager().registerEvents(new PlayerJoinListener(this), this);
 		

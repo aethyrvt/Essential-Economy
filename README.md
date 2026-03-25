@@ -1,5 +1,5 @@
 # EssentialEconomy
-A lightweight, modern Minecraft economy plugin built for Paper servers.
+A lightweight, modern economy plugin built for Paper servers.
 
 ## Features
 - **Dual storage** — Choose between YAML (file-based) or MySQL

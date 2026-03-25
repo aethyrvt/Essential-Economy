@@ -7,13 +7,18 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
-public class BalanceCommand implements CommandExecutor {
+public class BalanceCommand implements CommandExecutor, TabCompleter {
 
     private final EconomyMain plugin;
     private final ChatManager chatManager;
@@ -62,5 +67,17 @@ public class BalanceCommand implements CommandExecutor {
         placeholders.put("%balance%", EconomyMain.format(balance));
         chatManager.sendConfigMessage(sender, "balance.otherBalance", placeholders);
         return true;
+    }
+
+    @Override
+    public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
+        if (args.length == 1) {
+            String partial = args[0].toLowerCase();
+            return Bukkit.getOnlinePlayers().stream()
+                    .map(Player::getName)
+                    .filter(name -> name.toLowerCase().startsWith(partial))
+                    .collect(Collectors.toList());
+        }
+        return new ArrayList<>();
     }
 }

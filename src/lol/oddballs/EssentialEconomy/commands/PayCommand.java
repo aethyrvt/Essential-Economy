@@ -7,13 +7,18 @@ import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
-public class PayCommand implements CommandExecutor {
+public class PayCommand implements CommandExecutor, TabCompleter {
 
     private final EconomyMain plugin;
     private final ChatManager chatManager;
@@ -79,7 +84,8 @@ public class PayCommand implements CommandExecutor {
             return true;
         }
 
-        if (amount <= 0) {
+        double minimum = plugin.getConfigHandler().getMinimumPayAmount();
+        if (amount < minimum) {
             Map<String, String> placeholders = new HashMap<>();
             placeholders.put("%amount%", args[1]);
             chatManager.sendConfigMessage(sender, "pay.invalidAmount", placeholders);
@@ -102,12 +108,28 @@ public class PayCommand implements CommandExecutor {
         chatManager.sendConfigMessage(player, "pay.paid", senderPlaceholders);
 
         if (target.isOnline()) {
-            Map<String, String> targetPlaceholders = new HashMap<>();
-            targetPlaceholders.put("%player%", player.getName());
-            targetPlaceholders.put("%amount%", formattedAmount);
-            chatManager.sendConfigMessage((Player) target, "pay.received", targetPlaceholders);
+            Player onlineTarget = target.getPlayer();
+            if (onlineTarget != null) {
+                Map<String, String> targetPlaceholders = new HashMap<>();
+                targetPlaceholders.put("%player%", player.getName());
+                targetPlaceholders.put("%amount%", formattedAmount);
+                chatManager.sendConfigMessage(onlineTarget, "pay.received", targetPlaceholders);
+            }
         }
 
         return true;
+    }
+
+    @Override
+    public @Nullable List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
+        if (args.length == 1) {
+            String partial = args[0].toLowerCase();
+            return Bukkit.getOnlinePlayers().stream()
+                    .filter(p -> !p.equals(sender))
+                    .map(Player::getName)
+                    .filter(name -> name.toLowerCase().startsWith(partial))
+                    .collect(Collectors.toList());
+        }
+        return new ArrayList<>();
     }
 }

@@ -27,6 +27,7 @@ public class ConfigHandler {
     private String mysqlPassword;
     private Map<String, Integer> suffixes;
     private String prefix;
+    private double minimumPayAmount;
 
     public ConfigHandler(EconomyMain plugin) {
         this.plugin = plugin;
@@ -66,6 +67,7 @@ public class ConfigHandler {
         }
         
         prefix = config.getString("messages.prefix", "<gray>[<green>EssentialEconomy</green>]</gray> ");
+        minimumPayAmount = config.getDouble("minimumPayAmount", 0.01);
     }
 
     public int getBalanceTopInterval() {
@@ -118,6 +120,10 @@ public class ConfigHandler {
     
     public String getPrefix() {
         return prefix;
+    }
+
+    public double getMinimumPayAmount() {
+        return minimumPayAmount;
     }
 
     public String getMessage(String path) {
