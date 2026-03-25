@@ -88,7 +88,8 @@ public class PayCommand implements CommandExecutor, TabCompleter {
         if (amount < minimum) {
             Map<String, String> placeholders = new HashMap<>();
             placeholders.put("%amount%", args[1]);
-            chatManager.sendConfigMessage(sender, "pay.invalidAmount", placeholders);
+            placeholders.put("%minimum%", EconomyMain.format(minimum));
+            chatManager.sendConfigMessage(sender, "pay.belowMinimum", placeholders);
             return true;
         }
 

@@ -53,9 +53,9 @@ messages:
     balance:
       - "%prefix% &aYour balance is &e%balance%&a."
     otherNoAccount:
-      - "%prefix% &5%player% &cdoesn't have an account!"
+      - "%prefix% &e%player% &cdoesn't have an account!"
     otherBalance:
-      - "%prefix% &5%player%&a's balance is &e%balance%&a."
+      - "%prefix% &e%player%&a's balance is &e%balance%&a."
   
   money:
   
@@ -66,13 +66,13 @@ messages:
       usage:
         - "%prefix% &cUsage: /money give {player} {amount}"
       otherDoesntExist:
-        - "%prefix% &5%player% &cdoesn't exist!"
+        - "%prefix% &e%player% &cdoesn't exist!"
       otherNoAccount:
-        - "%prefix% &5%player% &cdoesn't have an account!"
+        - "%prefix% &e%player% &cdoesn't have an account!"
       invalidAmount:
-        - "%prefix% &5%amount% &cis invalid!"
+        - "%prefix% &e%amount% &cis invalid!"
       sent:
-        - "%prefix% &aYou sent &e%amount% &ato &5%player%&a."
+        - "%prefix% &aYou sent &e%amount% &ato &e%player%&a."
       sentMultiple:
         - "%prefix% &aYou sent &b%total% &aplayers &e%amount%&a."
       received:
@@ -99,13 +99,13 @@ messages:
       usage:
         - "%prefix% &cUsage: /money set {player} {amount}"
       otherDoesntExist:
-        - "%prefix% &5%player% &cdoesn't exist!"
+        - "%prefix% &e%player% &cdoesn't exist!"
       otherNoAccount:
-        - "%prefix% &5%player% &cdoesn't have an account!"
+        - "%prefix% &e%player% &cdoesn't have an account!"
       invalidAmount:
-        - "%prefix% &5%amount% &cis invalid!"
+        - "%prefix% &e%amount% &cis invalid!"
       setter:
-        - "%prefix% &5%player%&a's balance was set to &e%balance%&a."
+        - "%prefix% &e%player%&a's balance was set to &e%balance%&a."
       setterMultiple:
         - "%prefix% &b%total% players' balances were set to &e%balance%&a."
       set:
@@ -115,15 +115,15 @@ messages:
       usage:
         - "%prefix% &cUsage: /money take {player} {amount}"
       otherDoesntExist:
-        - "%prefix% &5%player% &cdoesn't exist!"
+        - "%prefix% &e%player% &cdoesn't exist!"
       otherNoAccount:
-        - "%prefix% &5%player% &cdoesn't have an account!"
+        - "%prefix% &e%player% &cdoesn't have an account!"
       invalidAmount:
-        - "%prefix% &5%amount% &cis invalid!"
+        - "%prefix% &e%amount% &cis invalid!"
       insufficientFunds:
-        - "%prefix% &5%player% &chas insufficient funds!"
+        - "%prefix% &e%player% &chas insufficient funds!"
       take:
-        - "%prefix% &e%amount% &awas taken from &5%player%&a's account."
+        - "%prefix% &e%amount% &awas taken from &e%player%&a's account."
       takeMultiple:
         - "%prefix% &e%amount% &awas taken from &b%total% &aplayers' accounts."
       taken:
@@ -133,21 +133,23 @@ messages:
     usage:
       - "%prefix% &cUsage: /pay {player} {amount}"
     otherDoesntExist:
-      - "%prefix% &5%player% &cdoesn't exist!"
+      - "%prefix% &e%player% &cdoesn't exist!"
     noAccount:
       - "%prefix% &cYou don't have an account!"
     otherNoAccount:
-      - "%prefix% &5%player% &cdoesn't have an account!"
+      - "%prefix% &e%player% &cdoesn't have an account!"
     cannotPaySelf:
       - "%prefix% &cYou cannot pay yourself!"
     invalidAmount:
-      - "%prefix% &5%amount% &cis invalid!"
+      - "%prefix% &e%amount% &cis invalid!"
+    belowMinimum:
+      - "%prefix% &cYou must pay at least &e%minimum%&c!"
     insufficientFunds:
       - "%prefix% &cYou have insufficient funds!"
     paid:
-      - "%prefix% &aYou paid &5%player% &e%amount%&a."
+      - "%prefix% &aYou paid &e%player% &e%amount%&a."
     received:
-      - "%prefix% &aYou were paid &e%amount% by &5%player%&a."
+      - "%prefix% &aYou were paid &e%amount% by &e%player%&a."
     
   top:
     usage:
@@ -156,7 +158,7 @@ messages:
     noAccounts:
       - "%prefix% &cThere are no accounts!"
     invalidTop:
-      - "%prefix% &5%top% &cis invalid!"
+      - "%prefix% &e%top% &cis invalid!"
     notEnoughPlayers:
       - "%prefix% &cThere are not enough players!"
     message:

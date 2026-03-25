@@ -91,8 +91,16 @@ public class MoneyCommandHandler implements CommandExecutor, TabCompleter {
         if (args.length == 1) {
             List<String> subcommands = Arrays.asList("give", "set", "take", "remove", "reload", "rl", "help");
             return subcommands.stream()
-                    .filter(s -> s.startsWith(args[0].toLowerCase()))
+                    .filter(s -> s.toLowerCase().startsWith(args[0].toLowerCase()))
                     .collect(Collectors.toList());
+        } else if (args.length == 2) {
+            String subCommand = args[0].toLowerCase();
+            if (Arrays.asList("give", "set", "take", "remove").contains(subCommand)) {
+                return org.bukkit.Bukkit.getOnlinePlayers().stream()
+                        .map(org.bukkit.entity.Player::getName)
+                        .filter(name -> name.toLowerCase().startsWith(args[1].toLowerCase()))
+                        .collect(Collectors.toList());
+            }
         }
         return new ArrayList<>();
     }

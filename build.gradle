@@ -3,7 +3,7 @@ plugins {
 }
 
 group = 'lol.oddballs.EssentialEconomy'
-version = '3.1'
+version = '3.1.1'
 
 java {
     toolchain.languageVersion = JavaLanguageVersion.of(21)
