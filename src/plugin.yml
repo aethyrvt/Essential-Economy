@@ -1,8 +1,8 @@
-name: Economy
-main: me.scruffyboy13.Economy.EconomyMain
-version: 2.3
-api-version: 1.13
-author: scruffyboy13
+name: EssentialEconomy
+main: lol.oddballs.EssentialEconomy.EconomyMain
+version: 3.0-SNAPSHOT
+api-version: '1.21'
+author: aethyrnet
 depend: [Vault]
 load: STARTUP
 
