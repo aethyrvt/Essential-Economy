@@ -28,7 +28,7 @@ public class MoneySetCommand {
         }
 
         OfflinePlayer target = Bukkit.getOfflinePlayer(args[1]);
-        if (!target.hasPlayedBefore()) {
+        if (!target.hasPlayedBefore() && !target.isOnline()) {
             Map<String, String> placeholders = new HashMap<>();
             placeholders.put("%player%", args[1]);
             chatManager.sendConfigMessage(sender, "money.set.otherDoesntExist", placeholders);
