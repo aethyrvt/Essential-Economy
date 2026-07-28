@@ -54,7 +54,7 @@ public class BalanceCommand implements CommandExecutor, TabCompleter {
 
         @SuppressWarnings("deprecation")
         OfflinePlayer target = Bukkit.getOfflinePlayer(args[0]);
-        if (!target.hasPlayedBefore()) {
+        if (!target.hasPlayedBefore() && !target.isOnline()) {
             Map<String, String> placeholders = new HashMap<>();
             placeholders.put("%player%", args[0]);
             chatManager.sendConfigMessage(sender, "balance.otherNoAccount", placeholders);
